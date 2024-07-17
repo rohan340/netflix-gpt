@@ -49,3 +49,8 @@
     border: none;
     cursor: pointer;
 }
+
+.login-error{
+    color: red;
+    font-weight: 800;
+}
