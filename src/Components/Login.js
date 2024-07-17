@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import Header from "./Header";
 import { validateLoginForm } from "../Utils/validateLoginForm";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../Utils/firebase"
 
 const Login = () => {
 
@@ -15,9 +17,47 @@ const Login = () => {
     }
 
     const handleSubmit = ()=>{
-        const message = validateLoginForm(email?.current?.value, password?.current?.value, fullName?.current?.value)
+        const message = validateLoginForm(email.current.value, password.current.value, fullName?.current?.value)
         setErrormessage(message)
+
+        // Sign In and Register Logic
+        if(message === null){
+            
+            if(isSignin){
+
+                // Signed in Logic
+                signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+                .then((userCredential) => {
+                    
+                    const user = userCredential.user;
+                    // ...
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                });
+
+            }
+            else{
+
+                // Sign up Logic
+                createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+                .then((userCredential) => {
+                    // Signed up 
+                    const user = userCredential.user;
+                    console.log(user)
+                    // ...
+                })
+                .catch((error) => {
+                    console.log(error)
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    // ..
+                });
+            }
+        }
     }
+
     return(
         <>
             <Header />
