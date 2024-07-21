@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, useNavigate } from "react-router-dom";
 import Browse from "./Browse";
 import Login from "./Login";
 
@@ -12,7 +12,8 @@ const Body = () => {
             path: '/browse',
             element: <Browse />
         }
-    ])
+    ]);
+
     return(
         <RouterProvider router={appRouter} />
     )

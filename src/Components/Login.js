@@ -1,8 +1,12 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Header from "./Header";
 import { validateLoginForm } from "../Utils/validateLoginForm";
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../Utils/firebase"
+import { useDispatch, useSelector } from "react-redux";
+import { addUser } from "../Utils/userSlice";
+import { useNavigate } from "react-router-dom";
+import { USER_AVATAR } from "../Utils/constants";
 
 const Login = () => {
 
@@ -11,6 +15,8 @@ const Login = () => {
     const email = useRef("");
     const password = useRef("");
     const fullName = useRef("");
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleSignin = ()=>{
         setIssignin(!isSignin);
@@ -28,31 +34,46 @@ const Login = () => {
                 // Signed in Logic
                 signInWithEmailAndPassword(auth, email.current.value, password.current.value)
                 .then((userCredential) => {
-                    
                     const user = userCredential.user;
-                    // ...
                 })
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
+                    setErrormessage("Username or Password is incorrect.")
                 });
-
             }
             else{
 
                 // Sign up Logic
                 createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
                 .then((userCredential) => {
-                    // Signed up 
                     const user = userCredential.user;
-                    console.log(user)
-                    // ...
+                    
+                    // update User info
+                    updateProfile(user, {
+                        displayName: fullName.current.value, 
+                        photoURL: USER_AVATAR
+                    })
+                        .then(() => {
+                            const { uid, email, displayName, photoURL} = auth.currentUser;
+                            dispatch(addUser({ 
+                                uid: uid, 
+                                email:email, 
+                                displayName: displayName,
+                                photoURL: photoURL
+                            }))
+                            navigate("/browse")
+                        })
+                        .catch((error) => {
+                            const errorCode = error.code;
+                            const errorMessage = error.message;
+                            setErrormessage(errorCode + " - " + errorMessage)
+                    });
                 })
                 .catch((error) => {
-                    console.log(error)
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    // ..
+                    setErrormessage(errorCode + " - " + errorMessage)
                 });
             }
         }
