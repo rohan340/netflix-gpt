@@ -8,8 +8,8 @@ const MovieList = ({ title, movies })=>{
             <h1 style={{color: "white", marginLeft: 12}}>{ title }</h1>
             <div className="movie-cards">
                 {
-                    movies.map((item)=>{
-                        return <img src={ MOVIE_IMAGE_PATH + item.poster_path} />
+                    movies.map((item,id)=>{
+                        return <img key={id} src={ MOVIE_IMAGE_PATH + item.poster_path} />
                     })
                 }
             </div>

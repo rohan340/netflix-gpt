@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { removeUser } from "../Utils/userSlice";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../Utils/firebase";
 import { useSelector } from "react-redux";
@@ -24,7 +24,8 @@ const Header = () => {
                     displayName: displayName,
                     photoURL: photoURL
                 }))
-                navigate("/browse")
+                const location = window.location.pathname;
+                navigate(location)
             }
             else{
                 navigate("/")
@@ -42,6 +43,10 @@ const Header = () => {
             console.log(error)
         });
     }
+
+    const handleSearch = ()=>{
+        navigate("/search-movie")
+    }
     
     return (
         <div className="header">
@@ -53,6 +58,7 @@ const Header = () => {
             { user && 
                 (
                     <div className="profile-section">
+                        <button onClick={handleSearch}>GPT Search</button>
                         <img src= { user.photoURL === null ? USER_AVATAR  : user.photoURL } 
                         alt="logo"/>
                         <button onClick={handleSignOut}>Sign Out</button>
