@@ -53,7 +53,7 @@ const Header = () => {
             { user && 
                 (
                     <div className="profile-section">
-                        <img src= { user.photoURL === null ? { USER_AVATAR }  : user.photoURL } 
+                        <img src= { user.photoURL === null ? USER_AVATAR  : user.photoURL } 
                         alt="logo"/>
                         <button onClick={handleSignOut}>Sign Out</button>
                     </div>

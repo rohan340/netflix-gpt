@@ -84,3 +84,47 @@
     color: red;
     font-weight: 800;
 }
+
+.main-container{
+    background-color: black;
+}
+
+.video-title-container{
+    position: absolute;
+    width: 92%;
+    height: 300px;
+    background: linear-gradient(to right,black, transparent);
+    padding-top: 448px;
+    padding-left: 115px;
+}
+
+.video-title-container button{
+    width: 15%;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 700;
+    font-size: 17px;
+    cursor: pointer;
+    margin: 2px;
+}
+
+.movie-list-container{
+    background-color: black;
+    padding-left: 24px;
+}
+
+.now-playing-movie-cards{
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-cards{
+    display: flex;
+    overflow-x: scroll;
+    gap: 25px;
+}
+
+::-webkit-scrollbar{
+    width: 1rem;
+}
