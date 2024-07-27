@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { removeUser } from "../Utils/userSlice";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../Utils/firebase";
 import { useSelector } from "react-redux";
@@ -25,7 +25,7 @@ const Header = () => {
                     photoURL: photoURL
                 }))
                 const location = window.location.pathname;
-                navigate(location)
+                (location == '/' ? navigate("/browse"):navigate(location))
             }
             else{
                 navigate("/")
@@ -51,8 +51,8 @@ const Header = () => {
     return (
         <div className="header">
             <div className="img-sec">
-                <img src= { NETFLIX_LOGO } 
-                alt="logo"/>
+            <Link to="/"><img src= { NETFLIX_LOGO } 
+                alt="logo"/></Link>
             </div>
             
             { user && 
