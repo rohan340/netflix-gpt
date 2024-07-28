@@ -51,13 +51,17 @@ const Header = () => {
     return (
         <div className="header">
             <div className="img-sec">
-            <Link to="/"><img src= { NETFLIX_LOGO } 
-                alt="logo"/></Link>
+                <Link to="/"><img src= { NETFLIX_LOGO } alt="logo"/></Link>
             </div>
             
             { user && 
                 (
                     <div className="profile-section">
+                        <select>
+                            <option>English</option>
+                            <option>Hindi</option>
+                            <option>Spanish</option>
+                        </select>
                         <button onClick={handleSearch}>GPT Search</button>
                         <img src= { user.photoURL === null ? USER_AVATAR  : user.photoURL } 
                         alt="logo"/>

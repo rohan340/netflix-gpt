@@ -17,7 +17,6 @@ const Body = () => {
             path: '/search-movie',
             element: <SearchMovie />
         },
-
     ]);
 
     return(
