@@ -16,3 +16,29 @@ export const API_OPTIONS = {
     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MjZhYzg2NTM0ZmUxMjY5NTE2ZDUyMmIyYmI5MmE4ZSIsIm5iZiI6MTcyMTc1MzExMS4zNjE4OTcsInN1YiI6IjY2OWZjZjdjYjVhNDNjYmE4MDJlN2MwYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-SxOA-tAVlugDmXJnWdaREGqu05sCbh6j9CnQ0kyMgw'
   }
 };
+
+export const SUPPRTED_LANGUAGES = [
+  { identified: "en", name: 'English'},
+  { identified: "hi", name: 'Hindi'},
+  { identified: "es", name:'Spanish'},
+  { identified: "fr", name:'French'},
+];
+
+export const LANGUAGE_CONTSTANTS = {
+  en:{
+    searchText: 'Search',
+    searchPlaceholder: 'Search title'
+  },
+  hi:{
+    searchText: 'खोज',
+    searchPlaceholder: 'शीर्षक खोजें'
+  },
+  es:{
+    searchText: 'Buscar',
+    searchPlaceholder: 'título de búsqueda'
+  },
+  fr:{
+    searchText: 'Recherche',
+    searchPlaceholder: 'titre de recherche'
+  }
+}

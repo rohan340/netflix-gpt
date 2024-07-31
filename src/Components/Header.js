@@ -4,14 +4,16 @@ import { useNavigate, Link } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../Utils/firebase";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { addUser } from "../Utils/userSlice";
-import { NETFLIX_LOGO, USER_AVATAR } from "../Utils/constants";
+import { NETFLIX_LOGO, SUPPRTED_LANGUAGES, USER_AVATAR } from "../Utils/constants";
+import { languageConfig } from "../Utils/configSlice";
 
 const Header = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector((store)=>store.user)
+    const [ selectLang, setSelectLang] = useState(false)
 
     // Check If User is Login or not
     useEffect(()=>{
@@ -25,7 +27,8 @@ const Header = () => {
                     photoURL: photoURL
                 }))
                 const location = window.location.pathname;
-                (location == '/' ? navigate("/browse"):navigate(location))
+                setSelectLang(location === '/search-movie');
+                navigate(location === '/' ? '/browse' : location);
             }
             else{
                 navigate("/")
@@ -47,6 +50,10 @@ const Header = () => {
     const handleSearch = ()=>{
         navigate("/search-movie")
     }
+
+    const handleOnChange = (e)=>{
+        dispatch(languageConfig(e.target.value))
+    }
     
     return (
         <div className="header">
@@ -57,11 +64,13 @@ const Header = () => {
             { user && 
                 (
                     <div className="profile-section">
-                        <select>
-                            <option>English</option>
-                            <option>Hindi</option>
-                            <option>Spanish</option>
-                        </select>
+                        { selectLang && (
+                                <select onChange={handleOnChange}>
+                                { SUPPRTED_LANGUAGES.map((item, id)=>{
+                                    return <option key={ id } value={ item.identified }>{ item.name }</option>
+                                })}
+                            </select>
+                        )}
                         <button onClick={handleSearch}>GPT Search</button>
                         <img src= { user.photoURL === null ? USER_AVATAR  : user.photoURL } 
                         alt="logo"/>
