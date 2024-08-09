@@ -142,6 +142,9 @@
     width: 1rem;
 }
 
+.search-container form{
+    width: 100%;
+}
 .search-container{
     position: absolute;
     top: 0;
@@ -154,6 +157,7 @@
     display: flex;
     gap: 20px;
     border-radius: 10px;
+    opacity: 0.9;
 }
 
 .search-container input{
@@ -171,4 +175,31 @@
     font-size: 12px;
     padding: 0px 24px;
     cursor: pointer;
+    margin-left: 15px;
+}
+
+.search-movie-list-container{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 250px;
+    background-color: black;
+    width: 70%;
+    opacity: 0.8;
+    margin-left: 150px;
+    border-radius: 10px;
+}
+
+.search-movie-list-container h1{
+    color: white;
+    text-align: center;
+}
+
+.search-movie-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    gap: 10px;
+    padding-left: 100px;
+    padding-bottom: 35px;
 }

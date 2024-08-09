@@ -71,7 +71,7 @@ const Header = () => {
                                 })}
                             </select>
                         )}
-                        <button onClick={handleSearch}>GPT Search</button>
+                        <button onClick={handleSearch}>Search Movies</button>
                         <img src= { user.photoURL === null ? USER_AVATAR  : user.photoURL } 
                         alt="logo"/>
                         <button onClick={handleSignOut}>Sign Out</button>
