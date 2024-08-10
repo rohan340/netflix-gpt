@@ -203,3 +203,44 @@
     padding-left: 100px;
     padding-bottom: 35px;
 }
+
+.search-movie-cards img{
+    cursor: pointer;
+}
+.modal-box-container{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-box-container iframe{
+    border-radius: 10px;
+    width: 50%;
+    height: 409px;
+}
+
+.modal-box-container button{
+    height: 30px;
+    background: red;
+    color: white;
+    border: navajowhite;
+    border-radius: 7px;
+    width: 50px;
+    cursor: pointer;
+}
+
+.modal-box-noresult{
+    width: 60%;
+    background-color: black;
+    opacity: 0.8;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    margin-top: 30px;
+}
